@@ -27,47 +27,56 @@ Base Chat is a multi-tenant RAG chatbot that uses [Ragie Connect](https://www.ra
 
 Base Chat is built with [Next.js](https://nextjs.org/) and uses [Auth.js](https://authjs.dev/) for authentication.
 
-1. **Clone and install dependencies**
 
-   ```bash
-   git clone https://github.com/ragieai/basechat.git
-   cd basechat
-   npm install
-   ```
+**Clone and install dependencies**
 
-2. **Database setup**
+```bash
+git clone https://github.com/ragieai/basechat.git
+cd basechat
+npm install
+```
 
-   ```bash
-   # Create PostgreSQL database
-   createdb basechat
-   ```
 
-3. **Environment configuration**
+**Database setup**
 
-   ```bash
-   # Copy environment variables template
-   cp env.example .env
+```bash
+# Create PostgreSQL database
+createdb basechat
+```
 
-   # Edit .env file to add required credentials and configuration
-   # Required minimums:
-   # - DATABASE_URL
-   # - RAGIE_API_KEY
-   # - At least one LLM provider API key (OPENAI_API_KEY, GOOGLE_GENERATIVE_AI_API_KEY, etc.)
-   # - AUTH_GOOGLE_ID and AUTH_GOOGLE_SECRET
-   # - ENCRYPTION_KEY (generate with: openssl rand -hex 32)
-   # - DEFAULT_PARTITION_LIMIT
-   ```
 
-4. **Set up database schema**
+**Environment configuration**
 
-   ```bash
-   npm run db:migrate
-   ```
+```bash
+# Copy environment variables template
+cp env.example .env
 
-5. **Start development server**
-   ```bash
-   npm run dev
-   ```
+# Edit .env file to add required credentials and configuration
+# Required minimums:
+# - DATABASE_URL
+# - RAGIE_API_KEY
+# - At least one LLM provider API key (OPENAI_API_KEY, GOOGLE_GENERATIVE_AI_API_KEY, etc.)
+# - AUTH_GOOGLE_ID and AUTH_GOOGLE_SECRET
+# - ENCRYPTION_KEY (generate with: openssl rand -hex 32)
+# - DEFAULT_PARTITION_LIMIT
+```
+
+
+
+**Set up database schema**
+
+```bash
+npm run db:migrate
+```
+
+
+
+**Start development server**
+
+```bash
+npm run dev
+```
+
 
 The application will be available at http://localhost:3000.
 

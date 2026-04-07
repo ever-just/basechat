@@ -1,10 +1,9 @@
 import { getSessionCookie } from "better-auth/cookies";
 import { NextRequest, NextResponse } from "next/server";
 
-import { BASE_URL } from "./lib/server/settings";
-
 export async function middleware(request: NextRequest) {
   const sessionCookie = getSessionCookie(request);
+  const baseUrl = request.nextUrl.origin;
 
   if (!sessionCookie) {
     const pathname = request.nextUrl.pathname;
@@ -19,9 +18,9 @@ export async function middleware(request: NextRequest) {
       !pathname.startsWith("/images")
     ) {
       const redirectPath = getUnauthenticatedRedirectPath(pathname);
-      const newUrl = new URL(redirectPath, BASE_URL);
+      const newUrl = new URL(redirectPath, baseUrl);
       if (pathname !== "/") {
-        const redirectTo = new URL(pathname, BASE_URL);
+        const redirectTo = new URL(pathname, baseUrl);
         redirectTo.search = request.nextUrl.search;
         newUrl.searchParams.set("redirectTo", redirectTo.toString());
       }

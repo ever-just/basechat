@@ -1,7 +1,5 @@
 import Link from "next/link";
 
-import * as settings from "@/lib/server/settings";
-
 import { Title } from "../common";
 import GoogleSignIn from "../google-sign-in";
 
@@ -14,10 +12,7 @@ interface Params {
 
 export default async function SignInPage({ searchParams }: { searchParams: Promise<Params> }) {
   const { reset, redirectTo } = await searchParams;
-  const signUpUrl = new URL("/sign-up", settings.BASE_URL);
-  if (redirectTo) {
-    signUpUrl.searchParams.set("redirectTo", redirectTo);
-  }
+  const signUpHref = redirectTo ? `/sign-up?redirectTo=${encodeURIComponent(redirectTo)}` : "/sign-up";
 
   return (
     <>
@@ -44,7 +39,7 @@ export default async function SignInPage({ searchParams }: { searchParams: Promi
 
       <div className="mt-6 text-[16px]">
         <span className="text-[#74747A]">Need to create a new organization?&nbsp;</span>
-        <Link href={signUpUrl.toString()} className="text-[#D946EF] hover:underline">
+        <Link href={signUpHref} className="text-[#D946EF] hover:underline">
           Sign up
         </Link>
       </div>
